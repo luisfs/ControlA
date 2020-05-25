@@ -8,60 +8,104 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-button slot="end">
-      <ion-icon slot="start" name="add-outline"></ion-icon>
-      Adicionar item
-    </ion-button>
-  </ion-item>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-button slot="end" (click)="addOrder()">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Adicionar item
+      </ion-button>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-button slot="end" (click)="log()">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+       Log
+      </ion-button>
+    </ion-item> -->
 
+    <div formArrayName='orders'>
+      <div *ngFor="let order of orders.controls; let i=index" [formGroupName]="i">
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Item 1</ion-card-subtitle>
-      <!-- <ion-card-title>Produto 1</ion-card-title> -->
-    </ion-card-header>
+        <ion-card>
+          <ion-card-header>
+           
+            <ion-card-subtitle>
+              
+              <p>Item {{i + 1}}</p>
 
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Produto: </ion-label>
-        <ion-select value="Selecione o valor">
-          <ion-select-option *ngFor="let item of items">
-            {{item.name}}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
+              <ion-item>
+                <ion-button slot="end" (click)="delete(i)" color="danger">
+                  <ion-icon name="trash-outline"></ion-icon>
+                 Deletar
+                </ion-button>
+              </ion-item>
+            </ion-card-subtitle>
+            <!-- <ion-card-title>Produto 1</ion-card-title> -->
+          </ion-card-header>
 
-      <ion-grid>
-        <ion-row>
-
-          <ion-col>
+          <ion-card-content>
             <ion-item>
-              <ion-label position="floating">Unidade:</ion-label>
-              <ion-select value="Selecione o valor">
-                <ion-select-option *ngFor="let item of unity">
+              <ion-label position="floating">Produto: </ion-label>
+              <ion-select value="Selecione o valor" formControlName="item">
+                <ion-select-option *ngFor="let item of items">
                   {{item.name}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
-          </ion-col>
 
-          <ion-col size="5">
+            <ion-grid>
+              <ion-row>
+
+                <ion-col>
+                  <ion-item>
+                    <ion-label position="floating">Unidade:</ion-label>
+                    <ion-select value="Selecione o valor" formControlName="unity">
+                      <ion-select-option *ngFor="let item of unity">
+                        {{item.name}}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+
+                <ion-col size="5">
+                  <ion-item>
+                    <ion-label position="floating">Quantidade:</ion-label>
+                    <ion-input type="number" formControlName="quantity"></ion-input>
+                  </ion-item>
+                </ion-col>
+
+              </ion-row>
+            </ion-grid>
+
             <ion-item>
-              <ion-label position="floating">Quantidade:</ion-label>
-              <ion-input type="number"></ion-input>
+              <ion-label position="floating">Local: </ion-label>
+              <ion-select value="Selecione o valor" formControlName="location">
+                <ion-select-option *ngFor="let item of location">
+                  {{item.name}}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
-          </ion-col>
 
-        </ion-row>
-      </ion-grid>
+            <!-- <ion-item *ngIf="this.form.get('orders').value[i].location === 'null'">
+              <ion-label position="floating">Local 2: </ion-label>
+              <ion-select value="Selecione o valor">
+                <ion-select-option *ngFor="let item of location2">
+                  {{item.name}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item> -->
 
-      <ion-item>
-        <ion-label position="floating">Utilização - Local de aplicação:</ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+            <ion-item>
+              <ion-label position="floating">Utilização - Local de aplicação:</ion-label>
+              <ion-textarea formControlName="detail"></ion-textarea>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+
+        </div>
+      </div>
+
+  </form>
 
 
 
