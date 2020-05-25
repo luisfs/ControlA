@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-button slot="end">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Adicionar item
+    </ion-button>
+  </ion-item>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Item 1</ion-card-subtitle>
+      <!-- <ion-card-title>Produto 1</ion-card-title> -->
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Produto: </ion-label>
+        <ion-select value="Selecione o valor">
+          <ion-select-option *ngFor="let item of items">
+            {{item.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Unidade:</ion-label>
+              <ion-select value="Selecione o valor">
+                <ion-select-option *ngFor="let item of unity">
+                  {{item.name}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="5">
+            <ion-item>
+              <ion-label position="floating">Quantidade:</ion-label>
+              <ion-input type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      <ion-item>
+        <ion-label position="floating">Utilização - Local de aplicação:</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>
