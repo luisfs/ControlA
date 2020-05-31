@@ -69,9 +69,13 @@ export class OrderPage implements OnInit {
   }
 
   delete(i){
+    console.log(this.orders.value);
     console.log(i);
     
+    // this.orders.value.removeAt(i)
     this.orders.value.splice(i, 1)
+    console.log(this.orders.value);
+    
 
     // mostrar modal para confirmação de deletar item aqui
   }
